@@ -41,12 +41,12 @@ public class Main {
 
             //checks if player rolled a double
             if (dice2.getNum() == dice1.getNum()) {
-                //itterates through the cardList
+                //iterates through the cardList
                 for (Cards card: cardList) {
                     if (card.getNumber() == 0) { // if card is first in the deck it gives player money
                         System.out.println(card.getMoney()); // placeholder to check code works
                         // show card pulled
-                       // change players money based on the method card.getMoney()
+                        // change players money based on the method card.getMoney()
                     }
                     card.cardRotation(); //rotates the cards to imitate the pulling of a card and putting
                                                   // it at the bottom of the deck
