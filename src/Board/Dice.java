@@ -1,4 +1,4 @@
-package src;
+package src.Board;
 
 import java.util.Random;
 import java.util.Scanner;
@@ -11,8 +11,9 @@ public class Dice {
 
     }
 
-    public void rollDice() {
+    public int rollDice() {
         this.Num = random.nextInt(6);
+        return Num;
     }
 
     public int getNum() {

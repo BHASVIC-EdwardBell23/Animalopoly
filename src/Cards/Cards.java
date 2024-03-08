@@ -1,4 +1,4 @@
-package src;
+package src.Cards;
 
 import javax.swing.*;
 

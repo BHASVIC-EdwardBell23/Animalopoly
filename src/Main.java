@@ -1,80 +1,42 @@
 package src;
 
-import java.util.ArrayList;
-import java.util.Scanner;
+import src.Board.Board;
 
 public class Main {
     public static void main(String[] args) {
-        boolean winner = false; //temp variable for testing
-        Scanner scanner = new Scanner(System.in); //temp scanner until button is implemented for rolling
-        int diceSum;
-        int cardsPulled = 0;
-        boolean shuffleWhenAllCardsPulled = true;
+        //Testing Space for all your coding needs B)
 
-        //creates a list of cards
-        CardsManager cardsManager = new CardsManager();
-        ArrayList<Cards> cardList = cardsManager.getCardList();
-        //Create Dice
-        Dice dice1 = new Dice();
-        Dice dice2 = new Dice();
+        //
+        new Board(); //Starts game
 
+        /*List of stuff needed to do
 
-        //do while loop for players turns
-        do {
-            //announce players turn
-            // if player.getMissTurn() == true
-            // player.setMissTurn(false)
-            // announce miss turn
-            // continue;
-
-            scanner.nextLine();
-
-            diceSum = dice1.getNum() + dice2.getNum();
-            for (int i = 0; i < diceSum; i++) {
-                //  move player around board
-            }
-            //check position on board, if not miss go:
-            // show property player has landed on
-            // check if buy or cancel button is pressed
-            // if miss go:
-            // player.setMissTurn(true)
-
-            //checks if player rolled a double
-            if (dice2.getNum() == dice1.getNum()) {
-                //iterates through the cardList
-                for (Cards card: cardList) {
-                    if (card.getNumber() == 0) { // if card is first in the deck it gives player money
-                        System.out.println(card.getMoney()); // placeholder to check code works
-                        // show card pulled
-                        // change players money based on the method card.getMoney()
-                    }
-                    card.cardRotation(); //rotates the cards to imitate the pulling of a card and putting
-                                                  // it at the bottom of the deck
-                }
-                cardsPulled++;
-                if (cardsPulled == 20 && shuffleWhenAllCardsPulled) {
-                    cardList = cardsManager.getCardList();
-                }
-            }
+        Implement GUI:
+             Board Display
+             Dice Visual
+             Card Display
+             Property Display -- indicate Mortgaged or not
+             Turn Announcement
+             Pieces Visually
+             Players Select Unique Pieces (different colours/shapes?)
+             Money Visual
+             Pieces Move
 
 
-                // move player around board
-                // check if position is on miss turn
-                // player.setMissTurn(true)
-                // playerTurn++;
-                // continue;
-            /*
-            board.showAnimal(player.position);
-            if player buys {
-                player.addMoney(board.getPrice(player.getPosition()))
-            }
-            else no buy
-
-            playerTurn++
-            */
+         GUI Logic:
+            player can input amount of players
+            player can input if they want to replay
+            player can input name
+            player can click to Roll, display a certain property, mortgage a property if owned
+            click to buy/upgrade/downgrade/mortgage a property
 
 
-
-        } while (!winner);
+        Logic:
+            Bankruptcy
+            Mortgaging Properties
+            Selling Upgrades
+            buying property
+            pay rent
+        */
     }
 }

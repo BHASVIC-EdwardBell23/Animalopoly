@@ -1,8 +1,9 @@
-package src;
+package src.Cards;
+
+import src.Cards.Cards;
 
 import javax.swing.*;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Random;
 
