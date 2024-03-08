@@ -13,7 +13,7 @@ public class Main {
 
         //creates a list of cards
         CardsManager cardsManager = new CardsManager();
-        ArrayList<Cards> cardList = cardsManager.getShuffledCards();
+        ArrayList<Cards> cardList = cardsManager.getCardList();
         //Create Dice
         Dice dice1 = new Dice();
         Dice dice2 = new Dice();
@@ -53,7 +53,7 @@ public class Main {
                 }
                 cardsPulled++;
                 if (cardsPulled == 20 && shuffleWhenAllCardsPulled) {
-                    cardList = cardsManager.getShuffledCards();
+                    cardList = cardsManager.getCardList();
                 }
             }
 
