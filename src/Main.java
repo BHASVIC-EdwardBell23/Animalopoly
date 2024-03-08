@@ -13,7 +13,7 @@ public class Main {
 
         //creates a list of cards
         CardsManager cardsManager = new CardsManager();
-        ArrayList<Cards> cardList = cardsManager.getShuffledCards();
+        ArrayList<Cards> cardList = cardsManager.getCardList();
         //Create Dice
         Dice dice1 = new Dice();
         Dice dice2 = new Dice();
@@ -41,19 +41,19 @@ public class Main {
 
             //checks if player rolled a double
             if (dice2.getNum() == dice1.getNum()) {
-                //itterates through the cardList
+                //iterates through the cardList
                 for (Cards card: cardList) {
                     if (card.getNumber() == 0) { // if card is first in the deck it gives player money
                         System.out.println(card.getMoney()); // placeholder to check code works
                         // show card pulled
-                       // change players money based on the method card.getMoney()
+                        // change players money based on the method card.getMoney()
                     }
                     card.cardRotation(); //rotates the cards to imitate the pulling of a card and putting
                                                   // it at the bottom of the deck
                 }
                 cardsPulled++;
                 if (cardsPulled == 20 && shuffleWhenAllCardsPulled) {
-                    cardList = cardsManager.getShuffledCards();
+                    cardList = cardsManager.getCardList();
                 }
             }
 

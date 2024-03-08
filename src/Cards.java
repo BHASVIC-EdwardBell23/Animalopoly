@@ -1,12 +1,18 @@
 package src;
 
+import javax.swing.*;
+
 public class Cards {
     int Money;
     int Number;
+    ImageIcon imageIcon;
+    String Message;
 
-    public Cards(int money, int number) {
+    public Cards(int money, int number,ImageIcon imageIcon, String message) {
         this.Money = money;
         this.Number = number;
+        this.imageIcon = imageIcon;
+        this.Message = message;
     }
 
     public int getMoney() {
