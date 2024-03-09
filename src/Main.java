@@ -31,7 +31,6 @@ todo         GUI Logic:
 
 
  todo       Logic:
-            Bankruptcy -> validates Bankruptcy at the end of turn -> option to downgrade/mortgage properties
             Mortgaging Properties -> Mortgage gives player 1/2 buy value <- can do at start of turn if wanted but forced to sell if money <0
             Selling Upgrades -> player gets half of upgrade  price <- can do at start of turn but forced to sell if money < 0
             buying property -> only upon landing on property

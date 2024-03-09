@@ -9,6 +9,7 @@ import src.Property.PropertyManager;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Scanner;
 
 public class Game {
     CardsManager cardsManager = new CardsManager();
@@ -30,12 +31,18 @@ public class Game {
     }
 
     private void startGame(int turn) {
+        Scanner scanner = new Scanner(System.in);
         boolean replay = false;
         do {
             playGame(turn);
 
             //ask for replay with buttons with GUI
             turn = determineWhoMovesFirst();
+            if (!scanner.nextLine().isBlank()) {
+                replay = true;
+            } else {
+                replay = false;
+            }
         } while (replay);
     }
 
@@ -71,23 +78,38 @@ public class Game {
     private void playGame(int turn) {
         boolean winner = false;
         do {
+            Scanner scanner = new Scanner(System.in);
             if (playerList.get(turn).getMissTurn) {
                 playerList.get(turn).setMissTurn(false);
                 continue;
             }
+            boolean diceRolled = false;
+            do {
+                if (scanner.nextLine().equals("Mortgage")) {
+                    MortgageMenu(turn);
+                }
+            } while (!diceRolled);
             int diceSum = diceRoll(); // make them click a button to roll
             playerList.get(turn).changePosition(diceSum); // could make moving a for loop, so it's easy for visual representation
             if (rolledDouble()) {
                 drawCard(turn); // show the carc
             }
             positionCheck(turn);
-
+            checkBankruptcy(turn);
 
             turn++;
             if (turn == playerList.size()) {
                 turn = 0;
             }
+
+            WinnerName();
         } while (!winner);
+    }
+
+    private void MortgageMenu(int turn) {
+        Player player = playerList.get(turn);
+        System.out.println(player.getPropertiesOwned());
+        
     }
 
     private void positionCheck(int turn) {
@@ -139,5 +161,17 @@ public class Game {
             return "Null";
         }
         return playerList.get(0).getName;
+    }
+
+    private void checkBankruptcy(int turn) {
+        Player player = playerList.get(turn);
+
+        if (player.getMoney() < 0) {
+            System.out.println("You must sell properties etc"); //make this gui ofcourse
+        }
+        if (player.getMoney() < 0 && player.getPropertiesOwned().isEmpty()) {
+            System.out.println("You are bankrupt!");
+            playerList.remove(player);
+        }
     }
 }
