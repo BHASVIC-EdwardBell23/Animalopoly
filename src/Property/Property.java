@@ -81,4 +81,8 @@ public class Property
         return "\nAnimal Name: " + this.Name + "\n" +
                 "Price: " + Cost[0];
     }
+
+    public String getName() {
+        return this.Name;
+    }
 }

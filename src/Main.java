@@ -7,6 +7,7 @@ public class Main {
         //Testing Space for all your coding needs B)
 
         //
+
         new Game(); //Starts game
 
         /*List of stuff needed to do

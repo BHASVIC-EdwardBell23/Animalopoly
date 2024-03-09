@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class PropertyManager {
     ArrayList<Property> propertiesList;
-    String[] AnimalNames = {"Spider" ,"Hamster", "Squirrel", "Frog", "Rabbit", "Fox", "Wolf", "Deer", "Cat", "Dog", "Pig", "Cow", "Bear", "Lion", "Tiger", "Jaguar", "Elephant", "Giraffe" , "Rhino", "Penguin" ,"Dolpin", "Whale", "Dinosaur", "Shark", "Squid"};
+    String[] AnimalNames = {"Spider", "Mouse" ,"Hamster", "Squirrel", "Frog", "Rabbit", "Fox", "Wolf", "Deer", "Cat", "Dog", "Pig", "Cow", "Bear", "Lion", "Tiger", "Jaguar", "Elephant", "Giraffe" , "Rhino", "Penguin" ,"Dolpin", "Whale", "Dinosaur", "Shark", "Squid"};
 
     public PropertyManager() {
         this.propertiesList = createPropertyList();

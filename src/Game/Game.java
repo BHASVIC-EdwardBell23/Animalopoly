@@ -66,6 +66,7 @@ public class Game {
     } // could make visual
 
     private void createBoard() {
+        Board gameBoard = new Board(propertyList, playerList, cardList);
     } //GUI
 
     private void playGame(int turn) {
@@ -102,7 +103,7 @@ public class Game {
             Iterator<Property> iterator = propertyList.iterator();
             for (Property property : propertyList) {
                 if (property.getPosition() == playerPosition && property.getOwned() == -1) {
-                    showPropoertyWithBuyOption();
+                    showPropertyWithBuyOption();
                 }
                 else if (property.getPosition() == playerPosition){
                     showPropertyWithRentOwed();
@@ -114,7 +115,7 @@ public class Game {
     private void showPropertyWithRentOwed() {
     }//use ToStringWithRent method
 
-    private void showPropoertyWithBuyOption() {
+    private void showPropertyWithBuyOption() {
     } //use ToStringWithBuy method
 
     private void drawCard(int turn) {
