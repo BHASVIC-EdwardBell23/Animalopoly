@@ -11,7 +11,7 @@ public class Main {
 
         /*List of stuff needed to do
 
-        Implement GUI:
+        Implement GUI: --> up to you
              Board Display
              Dice Visual
              Card Display
@@ -24,19 +24,19 @@ public class Main {
 
 
          GUI Logic:
-            player can input amount of players
-            player can input if they want to replay
-            player can input name
-            player can click to Roll, display a certain property, mortgage a property if owned
-            click to buy/upgrade/downgrade/mortgage a property
+            player can input amount of players -> PlayerManager ->constructor
+            player can input if they want to replay -> up to you
+            player can input name -> Player -> constructor
+            player can click to Roll, display a certain property, mortgage a property if owned -> up to you
+            click to buy/upgrade/downgrade/mortgage a property -> up to you
 
 
         Logic:
-            Bankruptcy
-            Mortgaging Properties
-            Selling Upgrades
-            buying property
-            pay rent
+            Bankruptcy -> validates Bankruptcy at the end of turn -> option to downgrade/mortgage properties
+            Mortgaging Properties -> Mortgage gives player 1/2 buy value <- can do at start of turn if wanted but forced to sell if money <0
+            Selling Upgrades -> player gets half of upgrade  price <- can do at start of turn but forced to sell if money < 0
+            buying property -> only upon landing on property
+            pay rent -> upon landing no property 
         */
     }
 }
