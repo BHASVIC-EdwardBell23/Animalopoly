@@ -1,4 +1,4 @@
-package src.Board;
+package src.Game;
 
 import src.Cards.Cards;
 import src.Cards.CardsManager;
@@ -10,7 +10,7 @@ import src.Property.PropertyManager;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class Board {
+public class Game {
     CardsManager cardsManager = new CardsManager();
     PlayerManager playerManager = new PlayerManager(getPlayerAmount());
     ArrayList<Player> playerList = new ArrayList<>();
@@ -20,7 +20,7 @@ public class Board {
     Dice dice1 = new Dice();
     Dice dice2 = new Dice();
 
-    public Board() {
+    public Game() {
         playerList = playerManager.getPlayerArrayList();
         propertyList = propertyManager.getPropertyList();
         cardList = cardsManager.getCardList();

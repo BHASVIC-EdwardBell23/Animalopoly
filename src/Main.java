@@ -1,13 +1,13 @@
 package src;
 
-import src.Board.Board;
+import src.Game.Game;
 
 public class Main {
     public static void main(String[] args) {
         //Testing Space for all your coding needs B)
 
         //
-        new Board(); //Starts game
+        new Game(); //Starts game
 
         /*List of stuff needed to do
 
