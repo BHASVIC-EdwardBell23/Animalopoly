@@ -1,16 +1,15 @@
 package src.Cards;
 
-import src.Cards.Cards;
+import src.Player.Player;
 
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Random;
 
 public class CardsManager {
     // Method to create a list of Cards objects
 
-    private ArrayList<Cards> cardList;
+    ArrayList<Cards> cardList;
 
     ArrayList<Integer> randomNumbers = new ArrayList<>();
 
@@ -18,7 +17,6 @@ public class CardsManager {
     public CardsManager() {
         this.cardList = createCardList();
     }
-    Random random = new Random();
 
     public void randomNumberListMaker() {
         for (int i = 0; i < 20; i++) {
@@ -42,7 +40,7 @@ public class CardsManager {
         cards.add(new Cards(140, randomNumbers.get(6), new ImageIcon("catMakingMoney.png"), "Your cat brings back money from strangers wallets.."));
         cards.add(new Cards(160, randomNumbers.get(7), new ImageIcon("bunnyMakingMoney.png"), "Your bunny wins a competition."));
         cards.add(new Cards(180, randomNumbers.get(8), new ImageIcon("monkeyMakingMoney.png"), "Your monkey climbs the fastest." ));
-        cards.add(new Cards(200, randomNumbers.get(9), new ImageIcon("dogmakingmoney.png"), "Your dog eats 100 hotdogs in 2 minutes."));
+        cards.add(new Cards(200, randomNumbers.get(9), new ImageIcon("dogmakingmoney.png"), "Your dog eats 100 hot dogs in 2 minutes."));
         cards.add(new Cards(-20, randomNumbers.get(10), new ImageIcon("dogEatingAllFood.png"), "Your dog escapes and steals a bunch of food."));
         cards.add(new Cards(-40, randomNumbers.get(11), new ImageIcon("monkeyDrawing.png"), "Your monkey destroys kids drawing, pay for compensation."));
         cards.add(new Cards(-60, randomNumbers.get(12), new ImageIcon("catFire.png"), "Your cat breaks microwave, replace it."));
@@ -57,6 +55,17 @@ public class CardsManager {
     }
 
     public ArrayList<Cards> getCardList() {
+        return cardList;
+    }
+
+    public ArrayList<Cards> drawCard(int turn, ArrayList<Player> playerList) {
+        for (Cards card: cardList) {
+            if (card.getNumber() == 0) {
+                playerList.get(turn).changeMoney(card.getMoney());
+            }
+            card.cardRotation();
+        }
+
         return cardList;
     }
 }

@@ -1,4 +1,4 @@
-package src.Game;
+package src.Dice;
 
 import java.util.Random;
 
@@ -11,12 +11,12 @@ public class Dice {
 
     }
 
-    public int rollDice() {
+    int rollDice() {
         this.Num = random.nextInt(6);
         return Num;
     }
 
-    public int getNum() {
+    int getNum() {
         return Num;
     }
 

@@ -2,82 +2,55 @@ package src.Game;
 
 import src.Cards.Cards;
 import src.Cards.CardsManager;
+import src.Dice.DiceManager;
 import src.Player.Player;
 import src.Player.PlayerManager;
 import src.Property.Property;
+import src.Property.PropertyDisplayManager;
 import src.Property.PropertyManager;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Scanner;
 
 public class Game {
     CardsManager cardsManager = new CardsManager();
-    PlayerManager playerManager = new PlayerManager(getPlayerAmount());
-    ArrayList<Player> playerList = new ArrayList<>();
-    ArrayList<Property> propertyList = new ArrayList<>();
+    PlayerManager playerManager = new PlayerManager();
+    ArrayList<Player> playerList;
+    ArrayList<Property> propertyList;
     PropertyManager propertyManager = new PropertyManager();
-    ArrayList<Cards> cardList = new ArrayList<>();
-    Dice dice1 = new Dice();
-    Dice dice2 = new Dice();
+    ArrayList<Cards> cardList;
+    MoneyManager moneyManager;
+    DiceManager diceManager;
+    PropertyDisplayManager propertyDisplayManager;
 
     public Game() {
         playerList = playerManager.getPlayerArrayList();
         propertyList = propertyManager.getPropertyList();
         cardList = cardsManager.getCardList();
-        createBoard();
-        int Turn = determineWhoMovesFirst();
-        startGame(Turn);
+        moneyManager = new MoneyManager(playerManager);
+        diceManager = new DiceManager();
+        propertyDisplayManager = new PropertyDisplayManager();
+        //Make gui
+        startGame();
     }
 
-    private void startGame(int turn) {
+    private void startGame() {
         Scanner scanner = new Scanner(System.in);
-        boolean replay = false;
+        boolean replay;
+        int turn;
         do {
+            turn = diceManager.determineWhoMovesFirst(playerList);
             playGame(turn);
 
             //ask for replay with buttons with GUI
-            turn = determineWhoMovesFirst();
-            if (!scanner.nextLine().isBlank()) {
-                replay = true;
-            } else {
-                replay = false;
-            }
+            replay = !scanner.nextLine().isBlank();
         } while (replay);
     }
 
-    private int getPlayerAmount() {
-        int Players = 0;
-        //ask how many people are playing with GUI
-        Players = 3212;
-        return Players;
-    }
-
-    private int determineWhoMovesFirst() {
-        int DiceSum = 0;
-        int GreatestNum = 0;
-        int Turn = 0;
-
-        try {
-            for (Player player: playerList) {
-                DiceSum = diceRoll();
-                if (DiceSum > GreatestNum) {
-                    GreatestNum = DiceSum;
-                    Turn = player.getNum();
-                }
-            }
-        } catch (Exception e) {
-            System.out.println("playerList is empty");
-        }
-        return Turn;
-    } // could make visual
-
-    private void createBoard() {
-    } //GUI
 
     private void playGame(int turn) {
-        boolean winner = false;
         do {
+            Player player = playerList.get(turn);
             Scanner scanner = new Scanner(System.in);
             if (playerList.get(turn).getMissTurn) {
                 playerList.get(turn).setMissTurn(false);
@@ -85,93 +58,50 @@ public class Game {
             }
             boolean diceRolled = false;
             do {
+                boolean playerOwnsProperty = false;
+                int attempts = 0;
+                int propertySelected;
                 if (scanner.nextLine().equals("Mortgage")) {
-                    MortgageMenu(turn);
+                    propertyDisplayManager.MortgageMenu(turn, playerList);
+                } else if (scanner.nextLine().equals("Roll")) {
+                    diceRolled = true;
+                } else if (scanner.nextLine().equals("Sell")) {
+                    do {
+                        propertySelected = scanner.nextInt();
+                        for (int i = 0; i < player.getPropertiesOwned().size(); i++) {
+                            if (player.getPropertiesOwned().get(i) == propertyList.get(propertySelected)) {
+                                playerOwnsProperty = true;
+                                moneyManager.SellProperty(player, propertyList.get(propertySelected));
+                            }
+                        }
+                        attempts++;
+                    } while (!playerOwnsProperty || attempts < 3);
                 }
             } while (!diceRolled);
-            int diceSum = diceRoll(); // make them click a button to roll
+            int diceSum = diceManager.diceRoll(); // make them click a button to roll
             playerList.get(turn).changePosition(diceSum); // could make moving a for loop, so it's easy for visual representation
-            if (rolledDouble()) {
-                drawCard(turn); // show the carc
+            if (diceManager.rolledDouble()) {
+                cardList = cardsManager.drawCard(turn, playerList); // show the card
             }
-            positionCheck(turn);
-            checkBankruptcy(turn);
+            playerManager.positionCheck(turn, playerList, propertyList, propertyDisplayManager);
+            moneyManager.isBankrupt(turn);
 
             turn++;
             if (turn == playerList.size()) {
                 turn = 0;
             }
-
-            WinnerName();
-        } while (!winner);
+        } while (!determineWinner());
+        System.out.println("You win: " + WinnerName() + "!");
     }
 
-    private void MortgageMenu(int turn) {
-        Player player = playerList.get(turn);
-        System.out.println(player.getPropertiesOwned());
-        
+    private boolean determineWinner() {
+        return playerList.size() <= 1;
     }
 
-    private void positionCheck(int turn) {
-        //check position and give reasonable response
-        //possible response - miss turn activated - property pops up
-        Player player = playerList.get(turn);
-        int playerPosition = player.getPosition();
-        if (playerPosition == 13) {
-            playerList.get(turn).setMissTurn(true);
-        }
-        else {
-            Iterator<Property> iterator = propertyList.iterator();
-            for (Property property : propertyList) {
-                if (property.getPosition() == playerPosition && property.getOwned() == -1) {
-                    showPropoertyWithBuyOption();
-                }
-                else if (property.getPosition() == playerPosition){
-                    showPropertyWithRentOwed();
-                }
-            }
-        }
-    }
-
-    private void showPropertyWithRentOwed() {
-    }//use ToStringWithRent method
-
-    private void showPropoertyWithBuyOption() {
-    } //use ToStringWithBuy method
-
-    private void drawCard(int turn) {
-        for (Cards card: cardList) {
-            if (card.getNumber() == 0) {
-                playerList.get(turn).changeMoney(card.getMoney());
-            }
-            card.cardRotation();
-        }
-    }
-
-    private boolean rolledDouble() {
-        return dice2.getNum() == dice1.getNum();
-    }
-
-    private int diceRoll() {
-        return dice1.rollDice() + dice2.rollDice();
-    }
-
-    private String WinnerName() {
+    private String  WinnerName() {
         if (playerList.size() > 1) {
             return "Null";
         }
         return playerList.get(0).getName;
-    }
-
-    private void checkBankruptcy(int turn) {
-        Player player = playerList.get(turn);
-
-        if (player.getMoney() < 0) {
-            System.out.println("You must sell properties etc"); //make this gui ofcourse
-        }
-        if (player.getMoney() < 0 && player.getPropertiesOwned().isEmpty()) {
-            System.out.println("You are bankrupt!");
-            playerList.remove(player);
-        }
     }
 }
