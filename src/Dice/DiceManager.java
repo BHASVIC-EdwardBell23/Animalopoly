@@ -40,5 +40,4 @@ public class DiceManager {
         }
         return Turn;
     } // could make visual
-
 }

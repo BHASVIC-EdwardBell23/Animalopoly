@@ -57,6 +57,17 @@ public class PlayerManager {
         }
     }
 
+    public boolean determineWinner(ArrayList<Player> playerList) {
+        return playerList.size() <= 1;
+    }
+
+    public String  WinnerName(ArrayList<Player> playerList) {
+        if (playerList.size() > 1) {
+            return "Null";
+        }
+        return playerList.get(0).getName;
+    }
+
     public ArrayList<Player> getPlayerArrayList() {
         return playerArrayList;
     }

@@ -22,7 +22,7 @@ public class Main {
              Pieces Move
 
 
-todo         GUI Logic:
+todo       GUI Logic:
             player can input amount of players -> PlayerManager ->constructor
             player can input if they want to replay -> up to you
             player can input name -> Player -> constructor

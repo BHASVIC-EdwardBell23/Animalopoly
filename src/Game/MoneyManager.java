@@ -19,7 +19,7 @@ public class MoneyManager {
         Player player = playerList.get(turn);
 
         if (player.getMoney() < 0) {
-            System.out.println("You must sell properties etc"); //make this gui ofcourse
+            System.out.println("You must sell properties etc"); //make this gui of course
         }
         if (player.getMoney() < 0 && player.getPropertiesOwned().isEmpty()) {
             System.out.println("You are bankrupt!");
