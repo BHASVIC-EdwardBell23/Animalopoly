@@ -32,7 +32,7 @@ public class TurnManager {
             } else if (scanner.nextLine().equals("Roll")) {
                 diceRolled = true;
             } else if (scanner.nextLine().equals("Sell")) {
-                do {
+                while (!playerOwnsProperty || attempts < 3 || player.getPropertiesOwned() != null) {
                     propertySelected = scanner.nextInt();
                     for (int i = 0; i < player.getPropertiesOwned().size(); i++) {
                         if (player.getPropertiesOwned().get(i) == propertyList.get(propertySelected)) {
@@ -41,7 +41,7 @@ public class TurnManager {
                         }
                     }
                     attempts++;
-                } while (!playerOwnsProperty || attempts < 3);
+                }
             }
         } while (!diceRolled);
     }

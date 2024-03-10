@@ -32,6 +32,7 @@ public class PlayerManager {
         int Players = 0;
         Scanner scanner = new Scanner(System.in);
         //ask how many people are playing with GUI
+        System.out.println("How many players?");
         Players = scanner.nextInt();
         return Players;
     }
@@ -45,7 +46,6 @@ public class PlayerManager {
             playerList.get(turn).setMissTurn(true);
         }
         else {
-            Iterator<Property> iterator = propertyList.iterator();
             for (Property property : propertyList) {
                 if (property.getPosition() == playerPosition && property.getOwned() == -1) {
                     propertyDisplayManager.showPropertyWithBuyOption();

@@ -30,10 +30,12 @@ public class Game {
         playerList = playerManager.getPlayerArrayList();
         propertyList = propertyManager.getPropertyList();
         cardList = cardsManager.getCardList();
+        Lists = new ArrayList<>();
         moneyManager = new MoneyManager(playerManager);
         diceManager = new DiceManager();
         propertyDisplayManager = new PropertyDisplayManager();
         turnManager = new TurnManager();
+
         Lists.add(playerList);
         Lists.add(propertyList);
         Lists.add(cardList);
@@ -50,6 +52,7 @@ public class Game {
             playGame(turn);
 
             //ask for replay with buttons with GUI
+            System.out.println("Replay?");
             replay = !scanner.nextLine().isBlank();
         } while (replay);
     }
@@ -61,6 +64,7 @@ public class Game {
                 playerList.get(turn).setMissTurn(false);
                 continue;
             }
+            System.out.println("Enter Roll , Mortgage or Sell");
             turnManager.BeforeRoll(turn, playerList, propertyDisplayManager, propertyList, moneyManager);
             int diceSum = diceManager.diceRoll(); // make them click a button to roll
             Lists = turnManager.AfterRoll(turn, playerList, diceSum, diceManager, cardList, cardsManager, playerManager, propertyList, propertyDisplayManager, moneyManager);

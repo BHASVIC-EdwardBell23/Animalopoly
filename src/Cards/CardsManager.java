@@ -62,6 +62,7 @@ public class CardsManager {
         for (Cards card: cardList) {
             if (card.getNumber() == 0) {
                 playerList.get(turn).changeMoney(card.getMoney());
+                System.out.println("You got " + card.getMoney());
             }
             card.cardRotation();
         }
