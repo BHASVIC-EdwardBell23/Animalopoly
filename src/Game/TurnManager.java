@@ -27,12 +27,13 @@ public class TurnManager {
         Player player = playerList.get(turn);
         int attempts = 0;
         do {
-            if (scanner.nextLine().equals("Mortgage")) {
+            String input = scanner.nextLine();
+            if (input.equals("Mortgage")) {
                 propertyDisplayManager.MortgageMenu(turn, playerList);
-            } else if (scanner.nextLine().equals("Roll")) {
+            } else if (input.equals("Roll")) {
                 diceRolled = true;
-            } else if (scanner.nextLine().equals("Sell")) {
-                while (!playerOwnsProperty || attempts < 3 || player.getPropertiesOwned() != null) {
+            } else if (input.equals("Sell")) {
+                while (!playerOwnsProperty || attempts < 3 && player.getPropertiesOwned() != null) {
                     propertySelected = scanner.nextInt();
                     for (int i = 0; i < player.getPropertiesOwned().size(); i++) {
                         if (player.getPropertiesOwned().get(i) == propertyList.get(propertySelected)) {
