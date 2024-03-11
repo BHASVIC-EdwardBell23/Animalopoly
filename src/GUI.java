@@ -38,14 +38,14 @@ public class GUI extends JFrame {
     private JLabel propertyShow;
 
     public GUI (){
+        panel = new JPanel();
+
+
         setContentPane(panel);
         setTitle("Animalopoly");
         setSize(2000,2000);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
-    }
-    public static void main(String[] args){
-        GUI myGUI =new GUI();
     }
 }
