@@ -1,4 +1,4 @@
-package src.Property;
+package src;
 
 import javax.swing.*;
 
@@ -40,7 +40,8 @@ public class GUI extends JFrame {
     public GUI (){
         setContentPane(panel);
         setTitle("Animalopoly");
-        setSize(400,300);
+        setSize(2000,2000);
+        setLocationRelativeTo(null);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
     }
