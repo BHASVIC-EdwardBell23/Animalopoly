@@ -36,16 +36,22 @@ public class GUI extends JFrame {
     private JLabel cardShow;
     private JLabel diceResult;
     private JLabel propertyShow;
+    private JTextField TurnAnouncement;
 
     public GUI (){
-        panel = new JPanel();
-
-
         setContentPane(panel);
         setTitle("Animalopoly");
         setSize(2000,2000);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
+    }
+
+    public void setDiceResult(int diceSum) {
+        diceResult.setText("Dice Result: " + diceSum);
+    }
+
+    public void setTurnAnouncement(String name) {
+        TurnAnouncement.setText(name + "Turn");
     }
 }

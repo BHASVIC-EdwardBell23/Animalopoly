@@ -3,6 +3,7 @@ package src.Game;
 import src.Cards.Cards;
 import src.Cards.CardsManager;
 import src.Dice.DiceManager;
+import src.GUI;
 import src.Player.Player;
 import src.Player.PlayerManager;
 import src.Property.Property;
@@ -20,18 +21,20 @@ public class TurnManager {
     }
 
 
-    public void BeforeRoll(int turn, ArrayList<Player> playerList, PropertyDisplayManager propertyDisplayManager, ArrayList<Property> propertyList, MoneyManager moneyManager) {
+    public void BeforeRoll(GUI gameBoard,int turn, ArrayList<Player> playerList, PropertyDisplayManager propertyDisplayManager, ArrayList<Property> propertyList, MoneyManager moneyManager) {
         boolean diceRolled = false;
         boolean playerOwnsProperty = false;
         int propertySelected;
         Player player = playerList.get(turn);
+        gameBoard.setTurnAnouncement(player.getName());
         int attempts = 0;
         do {
-            if (scanner.nextLine().equals("Mortgage")) {
+            String input = scanner.nextLine();
+            if (input.equals("Mortgage")) {
                 propertyDisplayManager.MortgageMenu(turn, playerList);
-            } else if (scanner.nextLine().equals("Roll")) {
+            } else if (input.equals("Roll")) {
                 diceRolled = true;
-            } else if (scanner.nextLine().equals("Sell")) {
+            } else if (input.equals("Sell")) {
                 while (!playerOwnsProperty || attempts < 3 || player.getPropertiesOwned() != null) {
                     propertySelected = scanner.nextInt();
                     for (int i = 0; i < player.getPropertiesOwned().size(); i++) {

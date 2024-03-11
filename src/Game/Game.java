@@ -3,6 +3,7 @@ package src.Game;
 import src.Cards.Cards;
 import src.Cards.CardsManager;
 import src.Dice.DiceManager;
+import src.GUI;
 import src.Player.Player;
 import src.Player.PlayerManager;
 import src.Property.Property;
@@ -25,8 +26,10 @@ public class Game {
     TurnManager turnManager;
     DiceManager diceManager;
     PropertyDisplayManager propertyDisplayManager;
+    GUI gameBoard;
 
     public Game() {
+        gameBoard = new GUI();
         playerList = playerManager.getPlayerArrayList();
         propertyList = propertyManager.getPropertyList();
         cardList = cardsManager.getCardList();
@@ -48,7 +51,7 @@ public class Game {
         boolean replay;
         int turn;
         do {
-            turn = diceManager.determineWhoMovesFirst(playerList);
+            turn = diceManager.determineWhoMovesFirst(playerList, gameBoard);
             playGame(turn);
 
             //ask for replay with buttons with GUI
@@ -65,8 +68,8 @@ public class Game {
                 continue;
             }
             System.out.println("Enter Roll , Mortgage or Sell");
-            turnManager.BeforeRoll(turn, playerList, propertyDisplayManager, propertyList, moneyManager);
-            int diceSum = diceManager.diceRoll(); // make them click a button to roll
+            turnManager.BeforeRoll(gameBoard,turn, playerList, propertyDisplayManager, propertyList, moneyManager);
+            int diceSum = diceManager.diceRoll(gameBoard); // make them click a button to roll
             Lists = turnManager.AfterRoll(turn, playerList, diceSum, diceManager, cardList, cardsManager, playerManager, propertyList, propertyDisplayManager, moneyManager);
             turn = turnManager.turnRotation(turn, playerList);
         } while (!playerManager.determineWinner(playerList));

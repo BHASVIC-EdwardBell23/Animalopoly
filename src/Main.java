@@ -7,7 +7,6 @@ public class Main {
         //Testing Space for all your coding needs B)
 
         //
-        new GUI();
         new Game();
 
         /*
