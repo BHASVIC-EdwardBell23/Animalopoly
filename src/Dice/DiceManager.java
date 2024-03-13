@@ -19,10 +19,10 @@ public class DiceManager {
         return dice2.getNum() == dice1.getNum();
     }
 
-    public int diceRoll(GUI gameBoard) {
-        int diceSum = dice1.rollDice() + dice2.rollDice();
-        gameBoard.setDiceResult(diceSum);
-        return diceSum;
+    public int diceRoll() {
+         return dice1.rollDice() + dice2.rollDice();
+       // gameBoard.setDiceResult(diceSum);
+       // return diceSum;
     }
 
     public int determineWhoMovesFirst(ArrayList<Player> playerList, GUI gameBoard) {
@@ -32,7 +32,7 @@ public class DiceManager {
 
         try {
             for (Player player: playerList) {
-                DiceSum = diceRoll(gameBoard);
+                DiceSum = diceRoll();
                 gameBoard.setDiceResult(DiceSum);
 
                 if (DiceSum > GreatestNum) {

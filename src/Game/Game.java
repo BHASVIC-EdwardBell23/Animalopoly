@@ -11,7 +11,7 @@ import src.Property.PropertyDisplayManager;
 import src.Property.PropertyManager;
 
 import java.util.ArrayList;
-import java.util.List;
+//import java.util.List;
 import java.util.Scanner;
 
 public class Game {
@@ -69,7 +69,7 @@ public class Game {
             }
             System.out.println("Enter Roll , Mortgage or Sell");
             turnManager.BeforeRoll(gameBoard,turn, playerList, propertyDisplayManager, propertyList, moneyManager);
-            int diceSum = diceManager.diceRoll(gameBoard); // make them click a button to roll
+            int diceSum = diceManager.diceRoll(); // make them click a button to roll
             Lists = turnManager.AfterRoll(turn, playerList, diceSum, diceManager, cardList, cardsManager, playerManager, propertyList, propertyDisplayManager, moneyManager);
             turn = turnManager.turnRotation(turn, playerList);
         } while (!playerManager.determineWinner(playerList));

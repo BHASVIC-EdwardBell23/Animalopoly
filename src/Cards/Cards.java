@@ -15,6 +15,14 @@ public class Cards {
         this.Message = message;
     }
 
+    public ImageIcon getImage(){
+        return this.imageIcon;
+    }
+
+    public String getMessage(){
+        return Message;
+    }
+
     public int getMoney() {
         return Money;
     }
