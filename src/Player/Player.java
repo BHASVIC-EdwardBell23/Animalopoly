@@ -46,8 +46,8 @@ public class Player {
 
     public void changePosition(int position) {
         Position += position;
-        if (Position > 25) {
-            Position = Position - 26;
+        if (Position > 26) {
+            Position = Position - 27;
             if (Position == 0) {
                 changeMoney(1000);
             }
