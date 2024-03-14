@@ -1,5 +1,6 @@
 package src.Cards;
 
+import src.GUI;
 import src.Player.Player;
 
 import javax.swing.*;
@@ -62,11 +63,11 @@ public class CardsManager {
         return cardList;
     }
 
-    public ArrayList<Cards> drawCard(int turn, ArrayList<Player> playerList) {
+    public ArrayList<Cards> drawCard(int turn, ArrayList<Player> playerList, GUI gameBoard) {
         for (Cards card: cardList) {
             if (card.getNumber() == 0) {
+                gameBoard.setCardShowing(card);
                 playerList.get(turn).changeMoney(card.getMoney());
-                System.out.println("You got " + card.getMoney());
             }
             card.cardRotation();
         }

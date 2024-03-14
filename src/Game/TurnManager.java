@@ -28,13 +28,22 @@ public class TurnManager {
         Player player = playerList.get(turn);
         gameBoard.setTurnAnouncement(player.getName());
         int attempts = 0;
+        int option = 0;
         do {
-            String input = scanner.nextLine();
-            if (input.equals("Mortgage")) {
+            gameBoard.resetClicked();
+            while (gameBoard.getClicked() == 0) {
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            option = gameBoard.getClicked();
+            if (option == 1) {
                 propertyDisplayManager.MortgageMenu(turn, playerList);
-            } else if (input.equals("Roll")) {
+            } else if (option == 2) {
                 diceRolled = true;
-            } else if (input.equals("Sell")) {
+            } else if (option == 3) {
                 while (!playerOwnsProperty || attempts < 3 || player.getPropertiesOwned() != null) {
                     propertySelected = scanner.nextInt();
                     for (int i = 0; i < player.getPropertiesOwned().size(); i++) {
@@ -49,7 +58,7 @@ public class TurnManager {
         } while (!diceRolled);
     }
 
-    public ArrayList<ArrayList> AfterRoll(int turn, ArrayList<Player> playerList, int diceSum, DiceManager diceManager, ArrayList<Cards> cardList, CardsManager cardsManager, PlayerManager playerManager, ArrayList<Property> propertyList, PropertyDisplayManager propertyDisplayManager, MoneyManager moneyManager) {
+    public ArrayList<ArrayList> AfterRoll(GUI gameBoard, int turn, ArrayList<Player> playerList, int diceSum, DiceManager diceManager, ArrayList<Cards> cardList, CardsManager cardsManager, PlayerManager playerManager, ArrayList<Property> propertyList, PropertyDisplayManager propertyDisplayManager, MoneyManager moneyManager) {
         ArrayList<ArrayList> Lists = new ArrayList<>();
         Lists.add(playerList);
         Lists.add(propertyList);
@@ -57,7 +66,7 @@ public class TurnManager {
 
         playerList.get(turn).changePosition(diceSum); // could make moving a for loop, so it's easy for visual representation
         if (diceManager.rolledDouble()) {
-            cardList = cardsManager.drawCard(turn, playerList); // show the card
+            cardsManager.drawCard(turn, playerList, gameBoard);
         }
         playerManager.positionCheck(turn, playerList, propertyList, propertyDisplayManager);
         moneyManager.isBankrupt(turn);

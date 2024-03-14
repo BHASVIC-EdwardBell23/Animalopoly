@@ -63,6 +63,7 @@ public class Game {
 
     private void playGame(int turn) {
         do {
+            gameBoard.clearCardShowing();
             if (playerList.get(turn).getMissTurn) {
                 playerList.get(turn).setMissTurn(false);
                 continue;
@@ -70,7 +71,7 @@ public class Game {
             System.out.println("Enter Roll , Mortgage or Sell");
             turnManager.BeforeRoll(gameBoard,turn, playerList, propertyDisplayManager, propertyList, moneyManager);
             int diceSum = diceManager.diceRoll(); // make them click a button to roll
-            Lists = turnManager.AfterRoll(turn, playerList, diceSum, diceManager, cardList, cardsManager, playerManager, propertyList, propertyDisplayManager, moneyManager);
+            Lists = turnManager.AfterRoll(gameBoard, turn, playerList, diceSum, diceManager, cardList, cardsManager, playerManager, propertyList, propertyDisplayManager, moneyManager);
             turn = turnManager.turnRotation(turn, playerList);
         } while (!playerManager.determineWinner(playerList));
         System.out.println("You win: " + playerManager.WinnerName(playerList) + "!");

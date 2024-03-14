@@ -45,6 +45,8 @@ public class GUI extends JFrame {
     private JLabel propertyShow;
     private JTextField TurnAnouncement;
 
+    private int clicked = 0;
+
     public GUI () {
         setContentPane(panel);
         setTitle("Animalopoly");
@@ -58,29 +60,8 @@ public class GUI extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 DiceManager diceManager = new DiceManager();
                 diceResult.setText("Dice Result: " + diceManager.diceRoll());
+                clicked = 2;
             }
-        });
-        Cards.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                CardsManager cardsManager = new CardsManager();
-                // ArrayList<src.Cards.Cards> cardlist = new ArrayList<>();
-
-                for (Cards card : cardsManager.getCardList())
-                    if (card.getNumber() == 0) {
-
-                        ImageIcon icon;
-                        icon = (ImageIcon) cardShow.getIcon();
-                        icon = card.getImage();
-                        cardShow.setIcon(icon);
-                        cardShow.setText(card.getMessage());
-                        //file:/C:/Users/ednut/Documents/GitHub/Animalopoly/out/production/Animalopoly/CardsImages/dogmakingmoney.png
-                       // C:\Users\ednut\Documents\GitHub\Animalopolyout/production/Animalopoly/CardsImages/dogmakingmoney.png
-
-                    }
-
-            }
-
         });
     }
     //public void setCardImage("")
@@ -93,7 +74,28 @@ public class GUI extends JFrame {
         TurnAnouncement.setText(name + "Turn");
     }
 
+    public int getClicked() {
+        return clicked;
+    }
+
+    public void setCardShowing(Cards card) {
+        ImageIcon icon;
+        icon = card.getImage();
+        cardShow.setIcon(icon);
+        cardShow.setText(card.getMessage() + " || " + card.getMoney());
+    }
+
+    public void clearCardShowing() {
+        cardShow.setIcon(null);
+        cardShow.setText("");
+    }
+
+
     private void createUIComponents() {
         // TODO: place custom component creation code here
+    }
+
+    public void resetClicked() {
+        clicked = 0;
     }
 }
