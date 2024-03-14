@@ -2,8 +2,6 @@ package src;
 
 
 import src.Cards.Cards;
-import src.Cards.CardsManager;
-import src.Dice.Dice;
 import src.Dice.DiceManager;
 
 import javax.swing.*;
@@ -88,6 +86,7 @@ public class GUI extends JFrame {
 
     public void setCardShowing(Cards card) {
         ImageIcon icon;
+        icon = (ImageIcon) cardShow.getIcon();
         icon = card.getImage();
         cardShow.setIcon(icon);
         cardShow.setText(card.getMessage() + " || " + card);

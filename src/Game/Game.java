@@ -11,7 +11,6 @@ import src.Property.PropertyDisplayManager;
 import src.Property.PropertyManager;
 
 import java.util.ArrayList;
-//import java.util.List;
 import java.util.Scanner;
 
 public class Game {
