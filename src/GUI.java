@@ -3,6 +3,7 @@ package src;
 
 import src.Cards.Cards;
 import src.Cards.CardsManager;
+import src.Dice.Dice;
 import src.Dice.DiceManager;
 
 import javax.swing.*;
@@ -44,8 +45,10 @@ public class GUI extends JFrame {
     private JLabel diceResult;
     private JLabel propertyShow;
     private JTextField TurnAnouncement;
-
+    DiceManager diceManager;
     private int clicked = 0;
+
+    private int DiceSum;
 
     public GUI () {
         setContentPane(panel);
@@ -54,21 +57,26 @@ public class GUI extends JFrame {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
+        diceManager = new DiceManager();
 
         DiceRoll.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                DiceManager diceManager = new DiceManager();
-                diceResult.setText("Dice Result: " + diceManager.diceRoll());
+                DiceSum = diceManager.diceRoll();
+                setDiceResult(DiceSum);
                 clicked = 2;
             }
         });
     }
-    //public void setCardImage("")
 
     public void setDiceResult(int diceSum) {
         diceResult.setText("Dice Result: " + diceSum);
     }
+
+    public boolean checkDouble() {
+        return diceManager.rolledDouble();
+    }
+
 
     public void setTurnAnouncement(String name) {
         TurnAnouncement.setText(name + "Turn");
@@ -82,7 +90,7 @@ public class GUI extends JFrame {
         ImageIcon icon;
         icon = card.getImage();
         cardShow.setIcon(icon);
-        cardShow.setText(card.getMessage() + " || " + card.getMoney());
+        cardShow.setText(card.getMessage() + " || " + card);
     }
 
     public void clearCardShowing() {
@@ -97,5 +105,9 @@ public class GUI extends JFrame {
 
     public void resetClicked() {
         clicked = 0;
+    }
+
+    public int getDiceSum() {
+        return DiceSum;
     }
 }

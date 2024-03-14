@@ -5,14 +5,13 @@ import src.Property.Property;
 import java.util.ArrayList;
 
 public class Player {
-    public boolean getMissTurn;
+    public boolean MissTurn;
     public String getName;
     int Money;
     int Position;
     int Num;
     String Name;
     ArrayList<Property> ownedProperties;
-    boolean MissTurn;
 
     public Player(int money, int num, String name) {
         this.Money = money;
@@ -20,6 +19,7 @@ public class Player {
         this.Name = name;
         this.Position = 0;
         this.MissTurn = false;
+        ownedProperties = new ArrayList<>();
     }
 
     public int getMoney() {
@@ -30,8 +30,10 @@ public class Player {
         return ownedProperties;
     }
 
-    public void addPropertyOwned(Property property) {
+    public ArrayList<Property> addPropertyOwned(Property property) {
         ownedProperties.add(property);
+        property.setOwned(this);
+        return ownedProperties;
     }
 
     public void changeMoney(int money) {
@@ -44,19 +46,19 @@ public class Player {
 
     public void changePosition(int position) {
         Position += position;
-        if (position > 25) {
-            position = position - 26;
-            if (position == 0) {
-                changeMoney(500);
+        if (Position > 25) {
+            Position = Position - 26;
+            if (Position == 0) {
+                changeMoney(1000);
             }
             else {
-                changeMoney(250);
+                changeMoney(500);
             }
         }
     }
 
     public void setMissTurn(boolean missTurn) {
-         this.MissTurn = missTurn;
+        this.MissTurn = missTurn;
     }
 
     public int getNum() {
@@ -70,5 +72,9 @@ public class Player {
     @Override
     public String toString() {
         return Name;
+    }
+
+    public boolean getMissTurn() {
+        return MissTurn;
     }
 }

@@ -1,6 +1,5 @@
 package src.Dice;
 
-import src.GUI;
 import src.Player.Player;
 
 import java.util.ArrayList;
@@ -20,12 +19,10 @@ public class DiceManager {
     }
 
     public int diceRoll() {
-         return dice1.rollDice() + dice2.rollDice();
-       // gameBoard.setDiceResult(diceSum);
-       // return diceSum;
+        return dice1.rollDice() + dice2.rollDice();
     }
 
-    public int determineWhoMovesFirst(ArrayList<Player> playerList, GUI gameBoard) {
+    public int determineWhoMovesFirst(ArrayList<Player> playerList) {
         int DiceSum;
         int GreatestNum = 0;
         int Turn = 0;
@@ -33,7 +30,6 @@ public class DiceManager {
         try {
             for (Player player: playerList) {
                 DiceSum = diceRoll();
-                gameBoard.setDiceResult(DiceSum);
 
                 if (DiceSum > GreatestNum) {
                     GreatestNum = DiceSum;
@@ -45,4 +41,12 @@ public class DiceManager {
         }
         return Turn;
     } // could make visual
+
+    public int getDice1Num() {
+        return dice1.getNum();
+    }
+
+    public int getDice2Num() {
+        return dice2.getNum();
+    }
 }

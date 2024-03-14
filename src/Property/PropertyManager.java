@@ -1,7 +1,5 @@
 package src.Property;
 
-import src.Property.Property;
-
 import java.util.ArrayList;
 
 public class PropertyManager {
@@ -18,7 +16,7 @@ public class PropertyManager {
             if (i == 13) {
                 i++;
             }
-            tempPropertyList.add(new Property(i+1, 50+(10*i), 25 + (5*i), AnimalNames[i]));
+            tempPropertyList.add(new Property(i+1, 100+(25*i), 50 + (15*i), AnimalNames[i]));
         }
 
         return tempPropertyList;
