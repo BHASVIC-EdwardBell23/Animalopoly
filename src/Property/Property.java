@@ -26,30 +26,13 @@ public class Property
     }
 
     public int getCost() {
-        return Cost[Upgrades];
+        return Cost[CurrentUpgrade];
     }
 
     public int getCurrentUpgrade() {
         return CurrentUpgrade;
     }
 
-    public void buyUpgrade(Player player) {
-        if (player.getMoney() > Cost[CurrentUpgrade+1] && this.CurrentUpgrade < Upgrades) {
-            CurrentUpgrade++;
-            System.out.println("Purchased Upgrade");
-        }
-        else {
-            System.out.println("Not enough money!");
-        }
-    }
-    public int sellProperty(Player player) {
-        int sellValue = 0;
-        if (Owned != player.getNum())
-        for (int i = 0; i < CurrentUpgrade; i++) {
-            sellValue = sellValue + (Cost[i]/2);
-        }
-        return sellValue;
-    }
     public int getRent() {
         return Rent[CurrentUpgrade];
     }
@@ -64,7 +47,8 @@ public class Property
 
     public String toStringWithUpgradesDisplayed() {
         return "\nAnimal Name: " + this.Name + "\n" +
-                "Upgrade Num | Price | Rent \n" +
+                "Current Upgrade: " + getCurrentUpgrade() +
+                "\nUpgrade Num | Price | Rent \n" +
                 "Upgrade 0   |" + Cost[0] + "|" + Rent[0] +
                 "\nUpgrade 1   |" + Cost[1] + "|" + Rent[1] +
                 "\nUpgrade 2   |" + Cost[2] + "|" + Rent[2] +
@@ -80,5 +64,26 @@ public class Property
     public String toStringWithBuy() {
         return "\nAnimal Name: " + this.Name + "\n" +
                 "Price: " + Cost[0];
+    }
+
+    public void downgrade() {
+        if (CurrentUpgrade < 0) {
+            return;
+        }
+        CurrentUpgrade--;
+    }
+
+    public boolean upgradeProperty() {
+
+        if (CurrentUpgrade == Upgrades) {
+            return false;
+        }
+        CurrentUpgrade++;
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return this.Name + "(" + getPosition() + ")";
     }
 }

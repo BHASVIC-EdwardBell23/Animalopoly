@@ -2,7 +2,6 @@ package src;
 
 
 import src.Cards.Cards;
-import src.Cards.CardsManager;
 import src.Dice.DiceManager;
 
 import javax.swing.*;
@@ -44,6 +43,10 @@ public class GUI extends JFrame {
     private JLabel diceResult;
     private JLabel propertyShow;
     private JTextField TurnAnouncement;
+    DiceManager diceManager;
+    private int clicked = 0;
+
+    private int DiceSum;
 
     public GUI () {
         setContentPane(panel);
@@ -52,48 +55,58 @@ public class GUI extends JFrame {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
+        diceManager = new DiceManager();
 
         DiceRoll.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                DiceManager diceManager = new DiceManager();
-                diceResult.setText("Dice Result: " + diceManager.diceRoll());
+                DiceSum = diceManager.diceRoll();
+                setDiceResult(DiceSum);
+                clicked = 2;
             }
-        });
-        Cards.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                CardsManager cardsManager = new CardsManager();
-                // ArrayList<src.Cards.Cards> cardlist = new ArrayList<>();
-
-                for (Cards card : cardsManager.getCardList())
-                    if (card.getNumber() == 0) {
-
-                        ImageIcon icon;
-                        icon = (ImageIcon) cardShow.getIcon();
-                        icon = card.getImage();
-                        cardShow.setIcon(icon);
-                        cardShow.setText(card.getMessage());
-                        //file:/C:/Users/ednut/Documents/GitHub/Animalopoly/out/production/Animalopoly/CardsImages/dogmakingmoney.png
-                       // C:\Users\ednut\Documents\GitHub\Animalopolyout/production/Animalopoly/CardsImages/dogmakingmoney.png
-
-                    }
-
-            }
-
         });
     }
-    //public void setCardImage("")
 
     public void setDiceResult(int diceSum) {
         diceResult.setText("Dice Result: " + diceSum);
     }
 
+    public boolean checkDouble() {
+        return diceManager.rolledDouble();
+    }
+
+
     public void setTurnAnouncement(String name) {
         TurnAnouncement.setText(name + "Turn");
     }
 
+    public int getClicked() {
+        return clicked;
+    }
+
+    public void setCardShowing(Cards card) {
+        ImageIcon icon;
+        icon = (ImageIcon) cardShow.getIcon();
+        icon = card.getImage();
+        cardShow.setIcon(icon);
+        cardShow.setText(card.getMessage() + " || " + card);
+    }
+
+    public void clearCardShowing() {
+        cardShow.setIcon(null);
+        cardShow.setText("");
+    }
+
+
     private void createUIComponents() {
         // TODO: place custom component creation code here
+    }
+
+    public void resetClicked() {
+        clicked = 0;
+    }
+
+    public int getDiceSum() {
+        return DiceSum;
     }
 }

@@ -1,5 +1,6 @@
 package src.Cards;
 
+import src.GUI;
 import src.Player.Player;
 
 import javax.swing.*;
@@ -32,8 +33,8 @@ public class CardsManager {
         deckNumberGenerator();
         ArrayList<Cards> cards = new ArrayList<>();
         String userDir = "/CardsImages/";
-      //System.getProperty("user.dir")+ "out/production/Animalopoly/CardsImages/";
-       // file:/C:/Users/ednut/Documents/GitHub/Animalopoly/dogmakingmoney.png
+        //System.getProperty("user.dir")+ "out/production/Animalopoly/CardsImages/";
+        // file:/C:/Users/ednut/Documents/GitHub/Animalopoly/dogmakingmoney.png
 
         cards.add(new Cards(20, randomNumbers.get(0), new ImageIcon( getClass().getResource(userDir + "bunnyMakingMoney.png")), "Your bunny gets lots of attraction."));
         cards.add(new Cards(40, randomNumbers.get(1), new ImageIcon(getClass().getResource(userDir + "catMakingMoney.png")), "Your cat gets pregnant, get money from government."));
@@ -62,15 +63,13 @@ public class CardsManager {
         return cardList;
     }
 
-    public ArrayList<Cards> drawCard(int turn, ArrayList<Player> playerList) {
+    public void drawCard(int turn, Player player, GUI gameBoard) {
         for (Cards card: cardList) {
             if (card.getNumber() == 0) {
-                playerList.get(turn).changeMoney(card.getMoney());
-                System.out.println("You got " + card.getMoney());
+                gameBoard.setCardShowing(card);
+                player.changeMoney(card.getMoney());
             }
             card.cardRotation();
         }
-
-        return cardList;
     }
 }

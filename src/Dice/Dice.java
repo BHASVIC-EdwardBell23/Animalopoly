@@ -12,7 +12,7 @@ public class Dice {
     }
 
     int rollDice() {
-        this.Num = random.nextInt(6);
+        this.Num = random.nextInt(6) + 1;
         return Num;
     }
 

@@ -11,7 +11,6 @@ import src.Property.PropertyDisplayManager;
 import src.Property.PropertyManager;
 
 import java.util.ArrayList;
-//import java.util.List;
 import java.util.Scanner;
 
 public class Game {
@@ -48,29 +47,41 @@ public class Game {
 
     private void startGame() {
         Scanner scanner = new Scanner(System.in);
-        boolean replay;
         int turn;
-        do {
-            turn = diceManager.determineWhoMovesFirst(playerList, gameBoard);
-            playGame(turn);
 
-            //ask for replay with buttons with GUI
-            System.out.println("Replay?");
-            replay = !scanner.nextLine().isBlank();
-        } while (replay);
+        turn = diceManager.determineWhoMovesFirst(playerList);
+        playGame(turn);
+
+        //ask for replay with buttons with GUI
+        System.out.println("Replay?");
+        if (!scanner.nextLine().isBlank()) {
+            deleteGame();
+            new Game();
+        }
+    }
+
+    private void deleteGame() {
+        playerList = null;
+        propertyList = null;
+        cardList = null;
+        Lists = null;
+        moneyManager = null;
+        diceManager = null;
+        turnManager = null;
     }
 
 
     private void playGame(int turn) {
         do {
-            if (playerList.get(turn).getMissTurn) {
+            System.out.println(playerList.get(turn).getName() + "'s Turn");
+            gameBoard.clearCardShowing();
+            if (playerList.get(turn).getMissTurn()) {
                 playerList.get(turn).setMissTurn(false);
                 continue;
             }
-            System.out.println("Enter Roll , Mortgage or Sell");
             turnManager.BeforeRoll(gameBoard,turn, playerList, propertyDisplayManager, propertyList, moneyManager);
-            int diceSum = diceManager.diceRoll(); // make them click a button to roll
-            Lists = turnManager.AfterRoll(turn, playerList, diceSum, diceManager, cardList, cardsManager, playerManager, propertyList, propertyDisplayManager, moneyManager);
+            int diceSum = gameBoard.getDiceSum();
+            Lists = turnManager.AfterRoll(gameBoard, turn, playerList, diceSum, diceManager, cardList, cardsManager, playerManager, propertyList, propertyDisplayManager, moneyManager);
             turn = turnManager.turnRotation(turn, playerList);
         } while (!playerManager.determineWinner(playerList));
         System.out.println("You win: " + playerManager.WinnerName(playerList) + "!");
