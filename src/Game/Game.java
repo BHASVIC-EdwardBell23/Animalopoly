@@ -74,7 +74,7 @@ public class Game {
     private void playGame(int turn) {
         do {
             System.out.println(playerList.get(turn).getName() + "'s Turn");
-            gameBoard.clearCardShowing();
+            //gameBoard.clearCardShowing();
             if (playerList.get(turn).getMissTurn()) {
                 playerList.get(turn).setMissTurn(false);
                 continue;

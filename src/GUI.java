@@ -77,7 +77,7 @@ public class GUI extends JFrame {
 
 
     public void setTurnAnouncement(String name) {
-        TurnAnouncement.setText(name + "Turn");
+        TurnAnouncement.setText(name + "'s Turn");
     }
 
     public int getClicked() {
