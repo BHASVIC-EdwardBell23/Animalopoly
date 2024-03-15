@@ -12,9 +12,10 @@ public class Main {
         /*
  todo       Implement GUI: --> up to you
              Board Display
-             Dice Visual
-             Card Display
-             Property Display -- indicate Mortgaged or not
+
+
+
+ todo        Property Display -- indicate Mortgaged or not
              Turn Announcement
              Pieces Visually
              Players Select Unique Pieces (different colours/shapes?)
