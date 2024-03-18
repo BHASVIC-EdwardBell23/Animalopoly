@@ -328,6 +328,7 @@
         </constraints>
         <properties/>
       </component>
+<<<<<<< HEAD
       <component id="fdb0f" class="javax.swing.JButton" binding="yesButton" default-binding="true">
         <constraints>
           <grid row="2" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
@@ -350,6 +351,14 @@
         </constraints>
         <properties>
           <text value="Do you want to buy this property"/>
+=======
+      <component id="ff084" class="javax.swing.JLabel" binding="cardText">
+        <constraints>
+          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Card Text"/>
+>>>>>>> 76fd1e95cc9403037ef97275f71492672b0744c1
         </properties>
       </component>
     </children>
