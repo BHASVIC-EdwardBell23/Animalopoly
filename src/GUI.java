@@ -43,6 +43,7 @@ public class GUI extends JFrame {
     private JLabel diceResult;
     private JLabel propertyShow;
     private JTextField TurnAnouncement;
+    private JLabel cardText;
     DiceManager diceManager;
     private int clicked = 0;
 
@@ -89,8 +90,10 @@ public class GUI extends JFrame {
         icon = (ImageIcon) cardShow.getIcon();
         icon = card.getImage();
         cardShow.setIcon(icon);
-        cardShow.setText(card.getMessage() + " || " + card);
+        cardText.setText(card.getMessage() + " || " + card);
     }
+
+
 
     public void clearCardShowing() {
         cardShow.setIcon(null);
