@@ -3,6 +3,8 @@ package src;
 
 import src.Cards.Cards;
 import src.Dice.DiceManager;
+import src.Player.Player;
+import src.Property.Property;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -43,8 +45,11 @@ public class GUI extends JFrame {
     private JLabel diceResult;
     private JLabel propertyShow;
     private JTextField TurnAnouncement;
+    private JButton yesButton;
+    private JButton noButton;
     DiceManager diceManager;
     private int clicked = 0;
+    private int property;
 
     private int DiceSum;
 
@@ -62,6 +67,19 @@ public class GUI extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 DiceSum = diceManager.diceRoll();
                 setDiceResult(DiceSum);
+                clicked = 2;
+            }
+        });
+        yesButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                clicked = 1;
+            }
+        });
+
+        noButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
                 clicked = 2;
             }
         });
@@ -109,4 +127,24 @@ public class GUI extends JFrame {
     public int getDiceSum() {
         return DiceSum;
     }
+
+    /*
+    public void purchaseProperty(Property property, Player currentPlayer) {
+         // Implement this method
+        int propertyPrice = property.getCost(); // Implement this method in Property class
+        if (currentPlayer.getMoney() >= propertyPrice) {
+            currentPlayer.changeMoney(propertyPrice);
+            currentPlayer.addPropertyOwned(property);
+
+            JOptionPane.showMessageDialog(null, "Property purchased successfully!");
+        } else {
+            JOptionPane.showMessageDialog(null, "Not enough money to purchase this property.");
+        }
+    }
+
+    */
+    public void purchase() {
+
+    }
 }
+
