@@ -291,7 +291,7 @@
         </constraints>
         <properties>
           <icon value="CardsImages/dogmakingmoney.png"/>
-          <text value="cardShow"/>
+          <text value=""/>
         </properties>
       </component>
       <component id="56abe" class="javax.swing.JLabel" binding="diceResult">
