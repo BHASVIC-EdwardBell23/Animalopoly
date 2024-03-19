@@ -45,12 +45,7 @@ public class GUI extends JFrame {
     private JLabel diceResult;
     private JLabel propertyShow;
     private JTextField TurnAnouncement;
-<<<<<<< HEAD
-    private JButton yesButton;
-    private JButton noButton;
-=======
-    private JLabel cardText;
->>>>>>> 76fd1e95cc9403037ef97275f71492672b0744c1
+also 
     DiceManager diceManager;
     private int clicked = 0;
     private int property;
