@@ -1,5 +1,6 @@
 package src.Player;
 
+import src.GUI;
 import src.Property.Property;
 
 import java.util.ArrayList;
@@ -41,7 +42,7 @@ public class PlayerManager {
         return Players;
     }
 
-    public void positionCheck(int turn, ArrayList<Player> playerList, ArrayList<Property> propertyList) {
+    public void positionCheck(int turn, ArrayList<Player> playerList, ArrayList<Property> propertyList, GUI gameBoard) {
         //check position and give reasonable response
         //possible response - miss turn activated - property pops up
         Player player = playerList.get(turn);
@@ -50,21 +51,18 @@ public class PlayerManager {
             playerList.get(turn).setMissTurn(true);
         }
         else {
-            Scanner scanner = new Scanner(System.in);
-            int Option;
             for (Property property : propertyList) {
                 if (property.getPosition() == playerPosition && property.getOwned() == -1) {
                     property.toStringWithBuy();
-                    System.out.println("""
-                            Do you want to buy this property?\s
-                            1) Yes\s
-                            2) No""");
-                    try {
-                        Option = scanner.nextInt();
-                    } catch (Exception e) {
-                        System.out.println("Automatically selected yes");
-                        Option = 1;
+                    gameBoard.resetClicked();
+                    while (gameBoard.getClicked() == 0) {
+                        try {
+                            Thread.sleep(100);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                     }
+                    int Option = gameBoard.getClicked();
                     if (Option == 1) {
                         if (property.getCost() < player.getMoney()) {
                             player.ownedProperties = player.addPropertyOwned(property);

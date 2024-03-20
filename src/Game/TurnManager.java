@@ -123,7 +123,7 @@ public class TurnManager {
             cardsManager.drawCard(turn, player, gameBoard);
         }
 
-        playerManager.positionCheck(turn, playerList, propertyList);
+        playerManager.positionCheck(turn, playerList, propertyList, gameBoard);
         moneyManager.isBankrupt(turn, propertyList);
         return Lists;
     }
