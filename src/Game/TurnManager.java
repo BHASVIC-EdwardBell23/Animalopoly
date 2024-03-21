@@ -44,13 +44,7 @@ public class TurnManager {
         int option = 0;
         do {
             gameBoard.resetClicked();
-            while (gameBoard.getClicked() == 0) {
-                try {
-                    Thread.sleep(100);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
+            while (gameBoard.getClicked() == 0) {}
             option = gameBoard.getClicked();
             if (option == DOWNGRADE) {
                 System.out.println(player.getPropertiesOwned());

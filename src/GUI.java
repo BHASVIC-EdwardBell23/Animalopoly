@@ -147,5 +147,6 @@ public class GUI extends JFrame {
             JOptionPane.showMessageDialog(null, "Not enough money to purchase this property.");
         }
     }
+     */
 }
 

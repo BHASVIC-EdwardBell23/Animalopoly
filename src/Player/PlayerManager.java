@@ -55,13 +55,7 @@ public class PlayerManager {
                 if (property.getPosition() == playerPosition && property.getOwned() == -1) {
                     property.toStringWithBuy();
                     gameBoard.resetClicked();
-                    while (gameBoard.getClicked() == 0) {
-                        try {
-                            Thread.sleep(100);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
+                    while (gameBoard.getClicked() == 0) {}
                     int Option = gameBoard.getClicked();
                     if (Option == 1) {
                         if (property.getCost() < player.getMoney()) {
